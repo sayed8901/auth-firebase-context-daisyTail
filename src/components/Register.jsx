@@ -6,7 +6,7 @@ const Register = () => {
 
     const {user , createUser, updateUserData} = useContext(AuthContext);
     // console.log(user, createUser);
-    console.log(updateUserData);
+    // console.log(updateUserData);
 
     const [successMsg, setSuccessMsg] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
@@ -89,10 +89,10 @@ const Register = () => {
                             <input 
                             type={showPassword ? 'text' : 'password'} name='password' placeholder="password" className="input input-bordered" required />
                             
-                            <button className='btn btn-sm w-20'
+                            <span className='btn btn-sm w-20'
                             onClick={handleToggle}>
                                 {showPassword ? 'Hide' : 'Show'}
-                            </button>
+                            </span>
                         </div>
 
                         <label className="label mt-4 mx-auto">

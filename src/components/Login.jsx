@@ -91,10 +91,10 @@ const Login = () => {
                             <input 
                             type={showPassword ? 'text' : 'password'} name='password' placeholder="password" className="input input-bordered" required />
                             
-                            <button className='btn btn-sm w-20'
+                            <span className='btn btn-sm w-20'
                             onClick={handleToggle}>
                                 {showPassword ? 'Hide' : 'Show'}
-                            </button>
+                            </span>
                         </div>
 
                         <label className="label mt-4 mx-auto">

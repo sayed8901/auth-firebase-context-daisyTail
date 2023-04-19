@@ -18,7 +18,15 @@ const AuthProviders = ({children}) => {
     }
 
     const updateUserData = (name) => {
-        updateProfile(user, {displayName: name})
+        updateProfile(auth.currentUser, {displayName: name})
+        .then( () => {
+            console.log(auth.currentUser);
+            alert('User Name updated');
+        })
+        .catch(error => {
+            console.log(error.message);
+            setErrorMsg(error.message);
+        })
     }
 
 
@@ -39,7 +47,7 @@ const AuthProviders = ({children}) => {
     // observe auth state change
     useEffect( () => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            console.log('auth state change', currentUser);
+            // console.log('auth state change', currentUser);
             setUser(currentUser);
 
             setLoading(false);
