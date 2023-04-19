@@ -4,11 +4,19 @@ import { AuthContext } from '../providers/AuthProviders';
 
 const Register = () => {
 
-    const {user , createUser} = useContext(AuthContext);
+    const {user , createUser, updateUserData} = useContext(AuthContext);
     // console.log(user, createUser);
+    console.log(updateUserData);
 
     const [successMsg, setSuccessMsg] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
+
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleToggle = () => {
+        setShowPassword(!showPassword);
+    }
     
     
     const handelRegisterSubmit = (event) => {
@@ -25,6 +33,7 @@ const Register = () => {
 
         console.log(name, email, password);
 
+
         createUser(email, password)
         .then(result => {
             const newUser = result.user;
@@ -37,6 +46,8 @@ const Register = () => {
             console.log(error.message);
             setErrorMsg(error.message);
         })
+
+        updateUserData(name);
     }
 
 
@@ -74,7 +85,15 @@ const Register = () => {
                             <span className="label-text">Password</span>
                         </label>
 
-                        <input type="password" name='password' placeholder="password" className="input input-bordered" required />
+                        <div className='flex justify-between items-center'>
+                            <input 
+                            type={showPassword ? 'text' : 'password'} name='password' placeholder="password" className="input input-bordered" required />
+                            
+                            <button className='btn btn-sm w-20'
+                            onClick={handleToggle}>
+                                {showPassword ? 'Hide' : 'Show'}
+                            </button>
+                        </div>
 
                         <label className="label mt-4 mx-auto">
                             <a href="#" className="label-text-alt link link-hover">Verify Account info!</a>

@@ -10,6 +10,14 @@ const Login = () => {
     const [successMsg, setSuccessMsg] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
 
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleToggle = () => {
+        setShowPassword(!showPassword);
+    }
+
+
     const handelLoginSubmit = (event) => {
 
         setSuccessMsg('');
@@ -56,7 +64,7 @@ const Login = () => {
         <div className="hero min-h-screen -mt-16 bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse mt-8">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold p-5">Please Log in !</h1>
+                    <h1 className="text-5xl font-bold p-5">Please Login!</h1>
 
                     <br /> <br />
                     <p className={`ms-4 text-2xl font-semibold ${errorMsg ? 'text-primary' : 'text-success'}`}>
@@ -79,7 +87,15 @@ const Login = () => {
                             <span className="label-text">Password</span>
                         </label>
 
-                        <input type="password" name='password' placeholder="password" className="input input-bordered" required />
+                        <div className='flex justify-between items-center'>
+                            <input 
+                            type={showPassword ? 'text' : 'password'} name='password' placeholder="password" className="input input-bordered" required />
+                            
+                            <button className='btn btn-sm w-20'
+                            onClick={handleToggle}>
+                                {showPassword ? 'Hide' : 'Show'}
+                            </button>
+                        </div>
 
                         <label className="label mt-4 mx-auto">
                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
